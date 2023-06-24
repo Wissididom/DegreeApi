@@ -30,7 +30,18 @@ function tofloat($num) {
 	);
 }
 function sanitizeDegreeType($degreeType) {
-	return $degreeType; // TODO
+	$degreeType = strtoupper($degreeType);
+	switch ($degreeType) {
+		case 'F':
+		case '°F'
+			return '°F';
+		case 'C':
+		case '°C'
+			return '°C';
+		default:
+			http_response_code(500);
+			die('Failed to sanitize input types');
+	}
 }
 function convert($from, $to, $value) {
 	$from = sanitizeDegreeType($from);
@@ -55,7 +66,7 @@ function convert($from, $to, $value) {
 			}
 			break;
 	}
-	return tofloat($value); // TODO
+	return tofloat($value);
 }
 switch ($format) {
 	case 'json':
@@ -79,4 +90,3 @@ switch ($format) {
 		]);
 		break;
 }
-?>

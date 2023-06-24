@@ -33,10 +33,10 @@ function sanitizeDegreeType($degreeType) {
 	$degreeType = strtoupper($degreeType);
 	switch ($degreeType) {
 		case 'F':
-		case '°F'
+		case '°F':
 			return '°F';
 		case 'C':
-		case '°C'
+		case '°C':
 			return '°C';
 		default:
 			http_response_code(500);
